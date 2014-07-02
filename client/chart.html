@@ -1,0 +1,30 @@
+<script type="text/template" data-variable-name="graph" id="body">
+<h1>This is a graph</h1>
+
+<p>You can send data to it via:</p>
+<ul>
+    <li>POST'ing to <a href="/c/<%-graph._id%>">/c/<%-graph._id%></a></li>
+    <li>GET'ing to <a href="/c/<%-graph._id%>/insert?v=1">/c/<%-graph._id%>/insert?v=1</a> - with a v value</li>
+    <li>TCP'ing to port 3001 using line terminated values ( the first line sent must be the graph id "<%-graph._id%>" )</li>
+</ul>
+
+<h2>Send some url encoded data</h2>
+<form method="post">
+    <input type="text" name="v" value="<%-Math.round(Math.random()*10)%>"/>
+    <input type="submit">
+</form>
+
+<svg id="chart"></svg>
+
+<h2>Last Data</h2>
+<pre id="last-data">
+</pre>
+
+</script>
+
+<script type="text/template" data-variable-name="items" id="last_data">
+    <% _.each(items, function(item) { %>
+        <%-JSON.stringify(item)%>
+    <% }); %>
+</script>
+
